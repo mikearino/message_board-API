@@ -5,16 +5,27 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-class Group
+class Seed
 
   def self.begin
     seed = Seed.new
     seed.generate_groups
+  end
+
+  def generate_groups
+    5.times do |i|
+      group = Group.create!(
+        topic: Faker::Commerce.department
+      )
+      rand(2..10).times do |i|
+        messages = group.messages.create!(
+          name: Faker::Name.name,
+          content: Faker::Hacker.say_something_smart,
+        )
+      end
+      puts "Group #{i}: topic is #{group.topic}."
+    end
+  end
 end
 
-def genearate_groups
-  5.times do |i|
-    group = Group.create!(
-    topic: Faker::Commerce.department
-  )
-  puts "Group #{i}: topic is #{group.topic}."
+Seed.begin

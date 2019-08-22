@@ -1,4 +1,4 @@
-class AddMesssagesTable < ActiveRecord::Migration[5.2]
+class AddMessagesTable < ActiveRecord::Migration[5.2]
   def change
     create_table :messages do |t|
       t.column :name, :string

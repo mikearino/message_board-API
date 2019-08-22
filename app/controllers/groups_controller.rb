@@ -17,11 +17,23 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    @group.destroy
+    @group.update!(group_params)
+    if @group.update!(group_params)
+      render status: 200, json: {
+        message: "This group has been updated successfully."
+      }
+    end
   end
 
+
   def destroy
-    @group=Group.find(params[:id])
+    @group = Group.find(params[:id])
+    @group.destroy
+    if @group.destroy!
+      render status: 200, json: {
+        message: "This group has been destroyed successfully."
+      }
+    end
   end
 
   private

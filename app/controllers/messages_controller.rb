@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
   def create
     @group = Group.find(params[:group_id])
     @message = @group.messages.create!(message_params)
-    json_response(@message)
+    json_response(@message, :created)
   end
 
   def show

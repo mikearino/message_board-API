@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
 
   def create
     @group= Group.create!(group_params)
-    json_response(@group)
+    json_response(@group, :created)
   end
 
   def update

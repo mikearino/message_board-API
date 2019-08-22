@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group= Group.create(group_params)
+    @group= Group.create!(group_params)
     json_response(@group)
   end
 
